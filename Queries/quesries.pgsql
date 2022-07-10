@@ -222,6 +222,7 @@ DELIMITER ',' CSV HEADER;
 -- Look at the ERD again and see where the data we need resides
 SELECT * FROM current_emp
     LIMIT 10;
+
 DROP TABLE IF EXISTS manager_info;
 
 SELECT dm.dept_no,
@@ -243,4 +244,23 @@ LIMIT 10;
 
 COPY manager_info TO
     'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\manager_info.csv'
+DELIMITER ',' CSV HEADER;
+
+DROP TABLE IF EXISTS dept_retirees;
+SELECT de.emp_no,
+    ce.first_name,
+    ce.last_name,
+    d.dept_name
+INTO dept_retirees
+FROM current_emp as ce
+    INNER JOIN dept_emp as de
+    ON ce.emp_no = de.emp_no
+    INNER JOIN departments as d
+    ON d.dept_no = de.dept_no;
+
+SELECT * FROM dept_retirees
+LIMIT 10;
+
+COPY dept_retirees TO
+    'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\dept_retirees.csv'
 DELIMITER ',' CSV HEADER;
