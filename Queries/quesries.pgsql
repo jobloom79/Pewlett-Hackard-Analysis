@@ -246,6 +246,14 @@ COPY manager_info TO
     'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\manager_info.csv'
 DELIMITER ',' CSV HEADER;
 
+-- List 3: Department Retirees
+-- The final list needs only to have the departments added to the current_emp table. 
+-- let's look at the department names and numbers we'll need.
+-- The Dept_Emp and Departments tables each have a portion of the data we'll need, 
+-- so we'll need to perform two more joins in the next query.
+-- We'll use inner joins on the current_emp, departments, 
+-- and dept_emp to include the list of columns we'll need to present to Bobby's manager:
+
 DROP TABLE IF EXISTS dept_retirees;
 SELECT de.emp_no,
     ce.first_name,
@@ -263,4 +271,21 @@ LIMIT 10;
 
 COPY dept_retirees TO
     'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\dept_retirees.csv'
+DELIMITER ',' CSV HEADER;
+
+-- 7.3.6 Create a Tailored List for the Sales dept
+DROP TABLE IF EXISTS sales_info;
+SELECT dr.emp_no,
+    dr.first_name,
+    dr.last_name,
+    dr.dept_name
+INTO sales_info
+FROM dept_retirees as dr
+WHERE dept_name IN ('Sales');
+
+SELECT * FROM sales_info
+LIMIT 10;
+
+COPY sales_info TO
+    'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\salesdept_retirees.csv'
 DELIMITER ',' CSV HEADER;
