@@ -220,20 +220,27 @@ DELIMITER ',' CSV HEADER;
 -- This list includes the manager's employee number, first name, last name, 
 -- and their starting and ending employment dates. 
 -- Look at the ERD again and see where the data we need resides
+SELECT * FROM current_emp
+    LIMIT 10;
+DROP TABLE IF EXISTS manager_info;
 
-DROP TABLE IF EXISTS manager_info
-SELECT dm.emp_no,
-	e.first_name,
-	e.last_name,
+SELECT dm.dept_no,
+    d.dept_name,
+    dm.emp_no,
+	ce.first_name,
+	ce.last_name,
 	dm.from_date,
-	dm.to_date,
+	dm.to_date
 INTO manager_info
 FROM dept_manager as dm
-INNER JOIN employees as e
-ON dm.emp_no = e.emp_no
-WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-    AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31')
-    AND (de.to_date = '9999-01-01');
+    INNER JOIN departments as d
+    ON dm.dept_no = d.dept_no
+    INNER JOIN current_emp as ce
+    ON dm.emp_no = ce.emp_no;
 
 SELECT * FROM manager_info
 LIMIT 10;
+
+COPY manager_info TO
+    'C:\Users\josep\Documents\GitHub\Pewlett-Hackard-Analysis\Data\manager_info.csv'
+DELIMITER ',' CSV HEADER;
