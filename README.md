@@ -8,7 +8,7 @@
 
 ---The 'DISTINCT ON' statement was then used to retrieve the most recent and unique title of the employees eligible for retirement and exported to the following path [Unique Titles](https://github.com/jobloom79/Pewlett-Hackard-Analysis/blob/main/Data/unique_titles.csv)
 
----The final step of the data retrieval was to query for the number of retiring titles filled by employees retiring using the 'COUNT' command and sorting by the count. The result was exported to the following path ![Retiring Titles](https://github.com/jobloom79/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
+---The final step of the data retrieval was to query for the number of retiring titles filled by employees retiring using the 'COUNT' command and sorting by the count. The result was exported to the following path [Retiring Titles](https://github.com/jobloom79/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 #### Deliverable 2: Determining employees eligible for the mentorship program
 ---This deliverable was retrieved extracting from the employees table employees born between January 1, 1965 and December 31, 1965. In order to accomplish this 'DISTINCT ON' command was used to get the unique employee numbers and a filter applies using 'WHERE' and 'ORDER BY' to get the birth dates and to dates of the employees, while sorting them by employee number. The data was exported to the following path  [Mentorship](https://github.com/jobloom79/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_eligibilty.csv)
 ### Results:
